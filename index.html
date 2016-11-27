@@ -1,0 +1,88 @@
+<html >  
+
+  <head>  
+<script src="angular.min.js"></script>
+
+ <script src="index.js"></script> 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+
+body{
+    margin: 40px;
+}
+.container{
+    width: 400px;
+}
+h1, table th{
+    color: #3C84F0;
+}
+</style>
+
+  </head>  
+
+<body ng-app="myapp"> 
+<center>
+
+<h1>My Contact List</h1> 
+</center>
+<div ng-controller="ContactController">  
+
+
+
+     <form class="container" name="contactForm">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" ng-model="newcontact.name" name="name" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" ng-model="newcontact.email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone Number:</label>
+
+    <input type="text" class="form-control" ng-model="newcontact.phone" name="phone" required>
+  </div>
+  <input type="button" value="Save" ng-disabled="( !(newcontact.phone|| newcontact.email|| newcontact.name) || !(contactForm.email.$valid && contactForm.name.$valid && contactForm.phone.$valid)  )" ng-click="saveContact()" />
+</form>
+
+
+     <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </tr>
+    </thead>
+    <tbody>
+     <tr ng-repeat="contact in contacts">  
+
+    <td>{{ contact.name }}</td>  
+
+    <td>{{ contact.email }}</td>  
+
+    <td>{{ contact.phone }}</td>  
+
+    <td>  
+
+        <a  href="#" ng-click="edit(contact.id)">edit</a> |   
+
+        <a href="#" ng-click="delete(contact.id)">delete</a>  
+
+    </td>  
+
+ </tr>  
+
+    </tbody>
+  </table>
+
+
+
+</div>  
+
+</body>  
+
+</html>  
